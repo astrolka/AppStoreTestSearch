@@ -27,6 +27,10 @@
     [super viewDidLoad];
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 60;
+    
+    UIGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(screenTap)];
+    [self.view addGestureRecognizer:tap];
+    
 }
 
 - (void)bindViewModel:(id)viewModel {
@@ -47,6 +51,9 @@
         });
     }];
 }
+
+#pragma mark - Actions
+
 - (IBAction)searchButtonAction:(UIButton *)sender {
     if (self.searchTextField.isFirstResponder) {
         [self.searchTextField resignFirstResponder];
@@ -54,6 +61,11 @@
     [self.viewModel performSearchWithText:self.searchTextField.text];
 }
 
+- (void)screenTap {
+    if (self.searchTextField.isFirstResponder) {
+        [self.searchTextField resignFirstResponder];
+    }
+}
 #pragma mark - <UITableViewDataSource>
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
