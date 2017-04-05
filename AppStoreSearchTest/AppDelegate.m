@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "VASViewModelManager.h"
+#import "VASSearchResultsControllerViewModel.h"
+#import "VASSearchResultsViewController.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +19,16 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    VASViewModelManager *manager = [[VASViewModelManager alloc] init];
+    VASSearchResultsControllerViewModel *vm = [[VASSearchResultsControllerViewModel alloc] initWithModel:nil andViewModelManager:manager];
+    VASSearchResultsViewController *vc = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"VASSearchResultsViewController"];
+    [vc bindViewModel:vm];
+    
+    self.window = [[UIWindow alloc] init];
+    [self.window setRootViewController:vc];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

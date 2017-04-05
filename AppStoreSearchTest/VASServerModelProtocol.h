@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  VASServerModelProtocol.h
 //  AppStoreSearchTest
 //
 //  Created by Александр Смоленский on 05.04.17.
 //  Copyright © 2017 Александр Смоленский. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface ViewController : UIViewController
-
-
+@protocol VASServerModelProtocol <NSObject>
+- (instancetype)initWithSerializedJSON:(NSDictionary *)json;
 @end
-
